@@ -15,13 +15,16 @@
             echo $query;
         $resultSet = mysql_query($query);
         while($row = mysql_fetch_array($resultSet)){
-            echo "<p>";
+            echo "<form method='post' action='CreateTask.php'>";
+            $mid = $row['mid'];
             echo $row['mid'];
             echo $row['name'];
             $pic_Path = $row['pic_path'];
             echo "<img width='40px' height='40px' src='$pic_Path' >";
-            echo "<a href='#'>send task</a>";//TODO replace #
-            echo "</p>";
+            echo "<input type='hidden' name='receiverId' value='$mid'>"; //store the id of the receiver
+            echo "<input type='submit' name='submit' value='send Task'>";
+            echo "</form>";
+            echo "\n";
 
         }
     ?>

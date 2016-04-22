@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
 <?php
 
 include_once ('connectToDB.php');
@@ -33,5 +39,10 @@ if(isset($_POST['submit'])){
 
 
     echo "<h1>you are added succsessfully <br> welcome to the website</h1>";
-}
+
+    }
 ?>
+        <p> return to <a href="login.php">login page</a></p> 
+  
+</body>
+</html>

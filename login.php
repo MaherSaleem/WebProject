@@ -29,7 +29,7 @@
 
 </head>
 <body>
-
+    <h1>Login page</h1>
 
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
         <p><label for="username">Name</label></p>
@@ -42,6 +42,9 @@
         <p><input type="submit" value="log in" name="submit"></p>
     </form>
 
+
+   	<p> not a user ?! click <a href="signUp.php">here</a> to sign up for free </p> 
+   	
 
 </body>
 </html>
