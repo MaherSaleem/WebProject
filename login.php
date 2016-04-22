@@ -19,6 +19,7 @@
             $arrUserInfo = mysql_fetch_array($result);
             $_SESSION['name'] = $arrUserInfo['name'];
             $_SESSION['mid'] = $arrUserInfo['mid'];
+            $_SESSION['pic_path'] = $arrUserInfo['pic_path'];
 
             header("location: main_page.php");//redirection to main page
         }

@@ -12,7 +12,8 @@ include_once("connectToDB.php");
     <form method="post" action="#">
         <p>Sender: <?php echo $_SESSION['name'] ?> </p>
         <?php
-        $receiver_Id = $_POST['receiverId'];
+        // $receiver_Id = $_POST['receiverId'];
+        $receiver_Id = $_GET['receiverId'];
         $receiverNameQuery = "SELECT name from member where mid = $receiver_Id  ";
         $recevier_name = mysql_fetch_row(mysql_query($receiverNameQuery))[0];
         echo "<p> To : $recevier_name </p> ";

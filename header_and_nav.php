@@ -6,6 +6,8 @@
 
 <?php
 
+$pic = $_SESSION['pic_path'];
+echo "<img width='100px' height='100px' src='$pic'>";
 echo $_SESSION['name'] . "  ";
 echo $_SESSION['mid'];
 ?>
