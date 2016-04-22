@@ -7,6 +7,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+
         $queryCheckIfExist =
             "SELECT * FROM `member` WHERE username='$username' and password='$password'";
         if(VERBOSE)
@@ -16,11 +17,8 @@
         if(mysql_num_rows($result) > 0) // we found the user
         {
             $arrUserInfo = mysql_fetch_array($result);
-            print "hello1";
             $_SESSION['name'] = $arrUserInfo['name'];
-            print "hello2";
-            $_SESSION['password'] = $arrUserInfo['password'];
-            print "hello3";
+            $_SESSION['mid'] = $arrUserInfo['mid'];
 
             header("location: main_page.php");//redirection to main page
         }

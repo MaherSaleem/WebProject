@@ -1,10 +1,6 @@
 <?php
-    session_start();
 
-    //if the session is not exist , we return to login page
-    if(!isset($_SESSION['name'])){
-        header("location: login.php");
-    }
+    include_once ('check_session.php');
 ?>
 <html>
 <head>
@@ -12,13 +8,7 @@
 </head>
 <body>
 
-    <?php
-
-     echo $_SESSION['name'] . "  ";
-     echo $_SESSION['password'];
-    ?>
-
-    <a href="logout.php">Logout </a>
+    <?php include_once 'header_and_nav.php'?>
 
 </body>
 </html>

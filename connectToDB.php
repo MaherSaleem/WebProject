@@ -1,7 +1,7 @@
 <?php
 
 
-    define("VERBOSE" , true);
+    define("VERBOSE" , false);
     $db = mysql_connect("localhost" , "root" , "")
         or die("can't connect to Data base " . mysql_errno());
 
