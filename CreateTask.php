@@ -7,9 +7,28 @@ include_once("connectToDB.php");
 <head>
 </head>
 <body>
+
+    <?php
+    if(isset($_POST['submit'])){
+        $t_title = $_POST['Ttitle'];
+        $t_des = $_POST['description'];
+        $t_dueDate = $_POST['dueDate'];
+        $t_priority = $_POST['priority'];
+        $receiver_idd = $_POST['recevier_id'];
+        $sender_id = $_SESSION['mid'];
+
+        $sql = "INSERT INTO `webproject`.`task` (`t_id`, `t_title`, `t_desc`, `t_start_date`, `t_due_date`, `t_priority`,
+     `t_to`, `t_from`) VALUES (NULL, '$t_title', '$t_des',
+    CURRENT_TIME(), '$t_dueDate', '$t_priority ', '$receiver_idd', '$sender_id')";
+
+        if(VERBOSE)
+            echo $sql;
+        mysql_query($sql) or die ("can't insert this task");
+        header("location: assignTask.php");
+    }
+    ?>
     <h1>New Task</h1>
-    <!--    TODO change this # -->
-    <form method="post" action="#">
+    <form method="post" action="CreateTask.php">
         <p>Sender: <?php echo $_SESSION['name'] ?> </p>
         <?php
         // $receiver_Id = $_POST['receiverId'];
@@ -19,28 +38,28 @@ include_once("connectToDB.php");
         echo "<p> To : $recevier_name </p> ";
         ?>
         <label for="Ttitle"> Task Title</label> <br>
-        <input type="text" name=Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
+        <input type="text" name="Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
 
         <label for="description"> Task description</label> <br>
         <textarea id="description" name="description" rows="5" cols="30"></textarea><br>
+        <!--TODO fix "for" in lables -->
+        <label for="startDate"> Start Date</label> <br>
+        <input type="text" name="startDate" id=startDate" placeholder="Task Ttitle"><br>
 
-        <label for="Ttitle"> Start Date</label> <br>
-        <input type="text" name=Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
+        <label for="dueDate"> Due date</label> <br>
+        <input type="text" name="dueDate" id="dueDate" placeholder="Task Ttitle"><br>
 
-        <label for="Ttitle"> Due date</label> <br>
-        <input type="text" name=Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
-
-        <label for="Ttitle"> Priority </label> <br>
-        <select name="priority" size="1">
+        <label for="prioriyt"> Priority </label> <br>
+        <select name="priority" id="prioriyt" size="1">
             <option>1</option>
             <option>2</option>
             <option>3</option>
         </select>
 
-        <hidden name="recevier_id" value="<?php echo $_POST['receiverId'] ?>">
+        <input type='hidden' name="recevier_id" value="<?php echo $_GET['receiverId'] ?>">
 
         <br>
-        <input type="submit" name="submut" value="send Task">
+        <input type="submit" name="submit" value="send Task">
 
     </form>
 </body>
