@@ -7,6 +7,7 @@ include_once("connectToDB.php");
 <head>
 </head>
 <body>
+<?php include_once('header_and_nav.php')?>
 
     <?php
     if(isset($_POST['submit'])){
@@ -18,8 +19,8 @@ include_once("connectToDB.php");
         $sender_id = $_SESSION['mid'];
 
         $sql = "INSERT INTO `webproject`.`task` (`t_id`, `t_title`, `t_desc`, `t_start_date`, `t_due_date`, `t_priority`,
-     `t_to`, `t_from`) VALUES (NULL, '$t_title', '$t_des',
-    CURRENT_TIME(), '$t_dueDate', '$t_priority ', '$receiver_idd', '$sender_id')";
+     `t_to`, `t_from` , t_status) VALUES (NULL, '$t_title', '$t_des',
+    CURRENT_TIME(), '$t_dueDate', '$t_priority ', '$receiver_idd', '$sender_id' , 'PENDING')";
 
         if(VERBOSE)
             echo $sql;
@@ -47,7 +48,7 @@ include_once("connectToDB.php");
         <input type="text" name="startDate" id=startDate" placeholder="Task Ttitle"><br>
 
         <label for="dueDate"> Due date</label> <br>
-        <input type="text" name="dueDate" id="dueDate" placeholder="Task Ttitle"><br>
+        <input type="datetime-local" name="dueDate" id="dueDate" placeholder="Task Ttitle"><br>
 
         <label for="prioriyt"> Priority </label> <br>
         <select name="priority" id="prioriyt" size="1">
@@ -62,5 +63,6 @@ include_once("connectToDB.php");
         <input type="submit" name="submit" value="send Task">
 
     </form>
+<?php include_once('endOfPage.php')?>
 </body>
 </html>

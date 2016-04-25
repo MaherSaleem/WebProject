@@ -34,10 +34,10 @@
 
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
         <p><label for="username">Name</label></p>
-        <p><input type="text" name="username" placeholder="username" id="username"></p>
+        <p><input  required type="text" name="username" placeholder="username" id="username"></p>
 
         <p><label for="password">Password</label></p>
-        <p><input type="password" name="password" placeholder="password" id="password"></p>
+        <p><input required type="password" name="password" placeholder="password" id="password"></p>
 
 
         <p><input type="submit" value="log in" name="submit"></p>
