@@ -6,5 +6,6 @@
         $sql ="UPDATE task SET  t_status = '$status' WHERE t_id=$taskid";
         mysql_query($sql);
     }
+
     header("location: main_page.php");
 ?>

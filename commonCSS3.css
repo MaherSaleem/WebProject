@@ -5,7 +5,7 @@ body{
 }
 #head {
     position: relative;
-    background-color: #444466;
+    background-color: #4CAF50;/*#444466;*/
     padding-bottom: 5px;
     padding-left: 2%;
     width: 100%;
@@ -14,7 +14,7 @@ body{
 
 
 #disp {
-    background-color: #fff2cb;
+    background-color: #fff2cb ; /*#F1F1F1;*/
     height: 680px;
     padding-left: 2%;
     padding-top: 20px;
@@ -115,7 +115,7 @@ a:active{
     padding-left: 2%;
 }
 .nav_elm:hover{
-    background-color: #4CAF50;
+    background-color: #CCCCCC ;/*#4CAF50;*/
 }
 
 #nav_title {
@@ -156,10 +156,24 @@ p , li , td , th{
 		border: 6px solid blue;
 }
 
+/******************************************/
+/*tasks part*/
 
+.Pending_task{
+    background-color: #8c8c8c;
 
+}
+.Late_task{
+    background-color: #d9534f;
+}
 
+.Active_task{
+    background-color: #4cae4c;
+}
 
+.finished_task {
+    background-color: gold;
+}
 
 
 

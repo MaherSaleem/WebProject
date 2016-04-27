@@ -55,4 +55,30 @@ function printTasksbyStatus($status)
     }
     echo "</table>";
 }
+
+function setLateTasks(){
+    $mid = $_SESSION['mid'];
+    $sql = "UPDATE task SET t_status='LATE'
+              WHERE CURRENT_DATE() > t_due_date and t_to = $mid";
+    if(VERBOSE)
+        echo $sql;
+
+    mysql_query($sql) or die ('cant set late statuses');
+
+}
+
+function printAnyTable($sql){
+    $result_Set = mysql_query($sql) or die ("cant print the talbe");
+
+    echo "<table border='1'>";
+    while ($row = mysql_fetch_row($result_Set)) {
+        echo "<tr>";
+        foreach($row as $value){
+            echo "<td>$value</td>";
+        }
+        echo "</tr>";
+
+    }
+    echo "</table>";
+}
 ?>

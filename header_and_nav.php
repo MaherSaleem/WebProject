@@ -16,8 +16,8 @@
             <ul>
                 <a href="main_page.php"><li class="nav_elm" >Home page</li></a>
                 <a href="assignTask.php"><li class="nav_elm" >Add new Task</li></a>
-                <a href=""><li class="nav_elm" >search page</li></a>
-                <a href=""><li class="nav_elm" >late tasks</li></a>
+                <a href="search.php"><li class="nav_elm" >search page</li></a>
+                <a href="lateTasks.php"><li class="nav_elm" >late tasks</li></a>
                 <a href="pendingTasks.php"><li class="nav_elm" >pending tasks</li></a>
                 <a href="activeTasks.php"><li class="nav_elm" >active tasks</li></a>
 
