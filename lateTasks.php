@@ -9,6 +9,7 @@ include_once('connectToDB.php');
 </head>
 <body>
 <?php include_once 'header_and_nav.php'; ?>
+<div class="PageTitle">Late Tasks</div>
 
 <?php printTasksbyStatus("t_status = 'LATE'")?>
 

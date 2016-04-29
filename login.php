@@ -2,6 +2,9 @@
     session_start();
     include_once("connectToDB.php");
 
+    //if the user is logged in
+    if(isset($_SESSION['mid']))
+        header("location: main_page.php");
 
     if(isset($_POST['submit'])){
         $username = $_POST['username'];

@@ -175,7 +175,15 @@ p , li , td , th{
     background-color: gold;
 }
 
+.smallImage{
+    width : 40px ;
+    height : 40px;
+}
 
+.meduimImage{
+    width : 100px ;
+    height : 100px;
+}
 
 
 

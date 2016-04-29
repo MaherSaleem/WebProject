@@ -12,6 +12,71 @@ function printTasksbyStatus($status)
 {
 
     //printing tables of tasks
+
+    $myId = $_SESSION['mid'];
+    //statement to get my tasks
+    $sql = "SELECT name,  t_title , t_start_date , t_due_date , t_priority ,\n"
+        . " t_from , t_status from task , member where t_to = $myId and $status and t_to = mid";
+    if (VERBOSE)
+        echo $sql;
+    $result_Set = mysql_query($sql) or die("error :" . mysql_error());
+
+
+
+    if (mysql_num_rows($result_Set) == 0) {
+        echo "no task found !";
+
+    }
+    else {
+
+        echo "<table border='1'>";
+        echo "<tr>";
+        echo "<th>Task Title</th>";
+        echo "<th>Start Date</th>";
+        echo "<th>Due Date</th>";
+        echo "<th>Priority</th>";
+        echo "<th>From</th>";
+        echo "<th>status</th>";
+        echo "</tr>";
+        //printing the tasks
+        while ($row = mysql_fetch_array($result_Set)) {
+            echo "<tr>";
+            echo "<td>" . $row['t_title'] . "</td> ";
+            echo "<td>" . $row['t_start_date'] . "</td> ";
+            echo "<td>" . $row['t_due_date'] . "</td> ";
+            echo "<td>" . $row['t_priority'] . "</td> ";
+
+
+            $senderName = $row['name'];
+            echo "<td>" . "$senderName" . "</td> ";
+
+
+            echo "<td>" . $row['t_status'] . "</td> ";
+            echo "</tr>";
+
+        }
+        echo "</table>";
+    }
+}
+function printTasksbyCondition($condition)
+{
+
+
+    $myId = $_SESSION['mid'];
+    //statement to get my tasks
+    $sql = "SELECT name, t_title , t_start_date , t_due_date , t_priority ,\n"
+        . " t_from , t_status from task , member where $condition and t_to = mid";
+    if (VERBOSE)
+        echo $sql;
+    $result_Set = mysql_query($sql) or die("error :" . mysql_error());
+
+
+    if (mysql_num_rows($result_Set) == 0) {
+        echo "no task found !";
+
+    }
+    else {
+    //printing tables of tasks
     echo "<table border='1'>";
     echo "<tr>";
     echo "<th>Task Title</th>";
@@ -21,41 +86,26 @@ function printTasksbyStatus($status)
     echo "<th>From</th>";
     echo "<th>status</th>";
     echo "</tr>";
-
-    $myId = $_SESSION['mid'];
-    //statement to get my tasks
-    $sql = "SELECT t_title , t_start_date , t_due_date , t_priority ,\n"
-        . " t_from , t_status from task where t_to = $myId and $status";
-    if (VERBOSE)
-        echo $sql;
-    $result_Set = mysql_query($sql);
-
-
-    //    TODO fix the format of printing
-
-    //printing the tasks
-    while ($row = mysql_fetch_array($result_Set)) {
-        echo "<tr>";
-        echo "<td>" . $row['t_title'] . "</td> ";
-        echo "<td>" . $row['t_start_date'] . "</td> ";
-        echo "<td>" . $row['t_due_date'] . "</td> ";
-        echo "<td>" . $row['t_priority'] . "</td> ";
-
-        //statement to get the name of the sender
-        $sql = "SELECT name from member where mid = " . $row['t_from'];
-        if (VERBOSE)
-            echo $sql;
-        $senderName = mysql_fetch_array((mysql_query($sql)))['name'];
-        echo "<td>" . "$senderName" . "</td> ";
+        //printing the tasks
+        while ($row = mysql_fetch_array($result_Set)) {
+            echo "<tr>";
+            echo "<td>" . $row['t_title'] . "</td> ";
+            echo "<td>" . $row['t_start_date'] . "</td> ";
+            echo "<td>" . $row['t_due_date'] . "</td> ";
+            echo "<td>" . $row['t_priority'] . "</td> ";
 
 
-        echo "<td>" . $row['t_status'] . "</td> ";
-        echo "</tr>";
+            $senderName = $row['name'];
+            echo "<td>" . "$senderName" . "</td> ";
 
+
+            echo "<td>" . $row['t_status'] . "</td> ";
+            echo "</tr>";
+
+        }
+        echo "</table>";
     }
-    echo "</table>";
 }
-
 function setLateTasks(){
     $mid = $_SESSION['mid'];
     $sql = "UPDATE task SET t_status='LATE'

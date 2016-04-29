@@ -8,6 +8,7 @@
 </head>
 <body>
 <?php include_once("header_and_nav.php");?>
+<div class="PageTitle">New Task</div>
 
 <table border="1">
             <?php
@@ -23,7 +24,7 @@
                 echo "<td>$mid</td>"; // user id
                 echo "<td>" . $row['name'] . "</td>"; // user name
                 $pic_Path = $row['pic_path'];
-                echo "<td>". "<img width='40px' height='40px' src='$pic_Path' >" . "</td>"; // user pic
+                echo "<td>". "<img class='smallImage' src='$pic_Path' >" . "</td>"; // user pic
                 // echo "<input type='hidden' name='receiverId' value='$mid'>";
                 // echo "<input type='submit' name='submit' value='send Task'>";
                 echo  "<td>". "<a href='CreateTask.php?receiverId=$mid'>send Task</a>" . "</td>";//store the id of the receiver at $_GET['receiverId']

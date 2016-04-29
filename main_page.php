@@ -10,6 +10,8 @@ setLateTasks(); // to check late take and set them late in the db
 </head>
 <body>
 <?php include_once 'header_and_nav.php'; ?>
+<div class="PageTitle">Home Page</div>
+
 <?php //TODO printTasksbyStatus("t_status = ('Active' or 'PENDING' or 'finished')");?>
 
 <?php
