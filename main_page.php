@@ -2,6 +2,15 @@
 
 include_once('check_session.php');
 include_once('connectToDB.php');
+
+
+// give inital value for the cookies
+if(!isset($_COOKIE['limit']) ) {
+    setcookie("limit", 10);//initial value
+    header("location: main_page.php");//refresh to make the cookies take effect
+
+}
+
 setLateTasks(); // to check late take and set them late in the db
 ?>
 <html>
@@ -16,13 +25,19 @@ setLateTasks(); // to check late take and set them late in the db
 
 <?php
     $myId = $_SESSION['mid'];
+
     //statement to get my tasks
-    $sql = "SELECT t_id ,  t_title , t_start_date , t_due_date , t_priority ,\n"
-        . " t_from , t_status from task where t_to = $myId  and  t_status = ('Active' or 'PENDING' or 'finished')";
+    $sql = "SELECT name  , mid ,pic_path , t_id ,  t_title , t_start_date , t_due_date , t_priority ,\n"
+        . " t_from , t_status from task , member where t_from = mid and  t_to = $myId  and  t_status = ('Active' or 'PENDING' or 'finished')";
+    if (count($_COOKIE) > 0) // check the user enable the cookies
+        $sql = $sql . " limit ". $_COOKIE['limit'];
     if (VERBOSE)
         echo $sql;
     $result_Set = mysql_query($sql);
 ?>
+
+
+<!--to update statuses-->
 <form method="post" action="update_statuses.php">
     <table border='1'>
     <tr>
@@ -54,12 +69,11 @@ setLateTasks(); // to check late take and set them late in the db
         echo "<td>" . $row['t_due_date'] . "</td> ";
         echo "<td>" . $row['t_priority'] . "</td> ";
 
-        //statement to get the name of the sender
-        $sql = "SELECT name from member where mid = " . $row['t_from'] ;
-        if (VERBOSE)
-            echo $sql;
-        $senderName = mysql_fetch_array((mysql_query($sql)))['name'];
-        echo "<td>" . "$senderName" . "</td> ";
+
+        $id = $row['mid'];
+        $img_path = $row['pic_path'];
+        $name = $row['name'];
+        echo "<td><a href='searchByName.php?id=$id&name=$name&path=$img_path'>" . "$name" . "</a></td> ";
 
         if($status != 'LATE') {
             echo "<td><select name='$taskId' size=1 >\n";
@@ -80,6 +94,7 @@ setLateTasks(); // to check late take and set them late in the db
     echo "</table>";
     ?>
     <input type="submit" name="submit" value="update Statuses" >
+
 </form>
 <?php include_once('endOfPage.php')?>
 </body>

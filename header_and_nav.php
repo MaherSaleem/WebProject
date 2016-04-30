@@ -1,7 +1,7 @@
 <head>
     <link href="commonCSS3.css" rel="stylesheet" type="text/css">
-<body>
 
+<body>
 
 
     <div id="head">
@@ -20,6 +20,7 @@
                 <a href="lateTasks.php"><li class="nav_elm" >late tasks</li></a>
                 <a href="pendingTasks.php"><li class="nav_elm" >pending tasks</li></a>
                 <a href="activeTasks.php"><li class="nav_elm" >active tasks</li></a>
+                <a href="setting.php"><li class="nav_elm" >Setting</li></a>
 
             </ul>
         </div>

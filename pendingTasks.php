@@ -13,6 +13,7 @@ include_once('connectToDB.php');
 
 <?php printTasksbyStatus("t_status = 'pending'")?>
 
+<br>
 <?php include_once('endOfPage.php')?>
 </body>
 </html>

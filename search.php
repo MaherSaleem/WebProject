@@ -38,6 +38,7 @@ include_once('connectToDB.php');
                    header("location: searchByPriority.php");
                 }
                 else if($_POST['searchBy'] ==3){//search by date
+                    header("location: searchByDate.php");
 
                 }
                 else if($_POST['searchBy'] ==4){//search by status
