@@ -20,6 +20,7 @@
                 <a href="lateTasks.php"><li class="nav_elm" >late tasks</li></a>
                 <a href="pendingTasks.php"><li class="nav_elm" >pending tasks</li></a>
                 <a href="activeTasks.php"><li class="nav_elm" >active tasks</li></a>
+                <a href="finishedTasks.php"><li class="nav_elm" >finished tasks</li></a>
                 <a href="setting.php"><li class="nav_elm" >Setting</li></a>
 
             </ul>

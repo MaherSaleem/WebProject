@@ -7,5 +7,6 @@
         mysql_query($sql);
     }
 
-    header("location: main_page.php");
+    $requestPage = $_SERVER['HTTP_REFERER']; // from where the request come
+    header("location: $requestPage");
 ?>

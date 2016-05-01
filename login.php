@@ -30,12 +30,14 @@
 ?>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="commonCSS3.css"/>
 
 </head>
-<body>
+<body >
+    <form  class="login" method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+        <div class="formDiv">
     <h1>Login page</h1>
-
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+    <hr>
         <p><label for="username">Name</label></p>
         <p><input  required type="text" name="username" placeholder="username" id="username"></p>
 
@@ -43,12 +45,14 @@
         <p><input required type="password" name="password" placeholder="password" id="password"></p>
 
 
-        <p><input type="submit" value="log in" name="submit"></p>
+        <p><input class="beautyButton" type="submit" value="log in" name="submit">
+        <a class="beautyButton otherColor" href="signUp.php">register</a>
+        </p>
+        </div>
     </form>
 
 
-   	<p> not a user ?! click <a href="signUp.php">here</a> to sign up for free </p> 
-   	
+
 
 </body>
 </html>

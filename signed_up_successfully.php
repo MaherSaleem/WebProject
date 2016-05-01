@@ -13,8 +13,6 @@ if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $pic_path = "img/$username";
-
 
     $insertSqlSt = "INSERT INTO `webproject`.`member` (`mid`, `name`, `username`,
                     `password`, `pic_path`, `date`) VALUES" .

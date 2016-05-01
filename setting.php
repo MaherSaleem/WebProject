@@ -9,10 +9,43 @@ if(!isset($_COOKIE['limit']) ) {
     header("location: setting.php");
 }
 
+
+// set the limit value
 if(isset($_POST["btnSetlimit"]) ) {
     setcookie("limit", $_POST['limitValue']);
     echo "enter  isset<br>";
     header("location: setting.php");
+}
+
+//update information
+if(isset($_POST['submit'])){
+    $sql = "update member set";
+    $name = $_POST['name'];
+    $pass = $_POST['password'];
+    $email = $_POST['username'];
+    $pic_temp = $_FILES['pic']['tmp_name'];
+    $id = $_SESSION['mid'];
+    if($_FILES['pic']['size'] > 0) // there is a new image
+    {
+        if(is_uploaded_file($pic_temp))
+            if(move_uploaded_file($pic_temp , "img/$id.jpg"));
+    }
+    if($name != NULL){
+        $_SESSION['name'] = $name;
+    }
+    $sqlGetInfo = "select * from member where mid = $id";
+    $userInfo = mysql_fetch_array(mysql_query($sqlGetInfo));
+    $sql = sprintf("update member set name='%s' ,
+      password='%s' , username='%s' where mid=$id"
+    ,   $name==NULL ? $userInfo['name'] : $name
+    ,   $pass==NULL ? $userInfo['password'] : $pass
+    ,  $email==NULL ? $userInfo['username'] : $email
+        );
+
+
+    if(VERBOSE)
+        echo $sql;
+    mysql_query($sql) or die("error : " . mysql_error());
 }
 ?>
 <html>
@@ -27,14 +60,14 @@ if(isset($_POST["btnSetlimit"]) ) {
 <form action="setting.php" method="post">
     <fieldset>
         <legend>Set task limit</legend>
-    <label>limit for daily tasks</label>
-    <input type="text"  name="limitValue" value="<?php echo $_COOKIE['limit'];?>">
+    <label for="limitValue">limit for daily tasks</label>
+    <input type="text"  name="limitValue" id="limitValue" value="<?php echo $_COOKIE['limit'];?>">
     <input type="submit" name="btnSetlimit">
     </fieldset>
 </form>
 
 <!--update information-->
-<form action="signed_up_successfully.php"  method="post" enctype="multipart/form-data">
+<form action="setting.php"  method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Update personal Info</legend>
     <p>

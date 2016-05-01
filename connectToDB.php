@@ -5,7 +5,7 @@
 // or die("Could not find database: " . mysql_error());
 
 
-define("VERBOSE", false);
+define("VERBOSE", false );
 $db = mysql_connect("localhost", "root", "")
 or die("can't connect to Data base " . mysql_errno());
 
@@ -31,8 +31,8 @@ function printTasksbyStatus($status)
     printTasksbyStatus2("$status limit $startIndex , $limit");
     echo "<br>";
     if($startIndex > 0)
-        echo "<a  href='$prevLink'>&#8678;</a>";
-    echo "<a  href='$nextLink'>&#8680;</a>"    ;
+        echo "<a  id=\"leftArrow\" href='$prevLink'>&#8678;</a>";
+    echo "<a id='rightArrow' href='$nextLink'>&#8680;</a>"    ;
 }
 function printTasksbyStatus2($status)
 {
@@ -41,8 +41,7 @@ function printTasksbyStatus2($status)
 
     $myId = $_SESSION['mid'];
     //statement to get my tasks
-    $sql = "SELECT mid , pic_path , name,  t_title , t_start_date , t_due_date , t_priority ,\n"
-        . " t_from , t_status from task , member where t_to = $myId and  t_from = mid and $status ";
+    $sql = "SELECT * from task , member where t_to = $myId and  t_from = mid and $status ";
     if (VERBOSE)
         echo $sql;
     $result_Set = mysql_query($sql) or die("error :" . mysql_error());
@@ -54,7 +53,7 @@ function printTasksbyStatus2($status)
 
     }
     else {
-
+        echo "<form method=\"post\" action=\"update_statuses.php\">";
         echo "<table   border='1'>";
         echo "<tr>";
         echo "<th>Task Title</th>";
@@ -66,7 +65,18 @@ function printTasksbyStatus2($status)
         echo "</tr>";
         //printing the tasks
         while ($row = mysql_fetch_array($result_Set)) {
-            echo "<tr>";
+
+            $status_ = $row['t_status'];
+            $taskId = $row['t_id'];
+            if($status_ == 'PENDING')
+                echo "<tr class='pending_task'>";
+            elseif($status_ == 'ACTIVE')
+                echo "<tr class='active_task'>";
+            elseif($status_ == 'FINISHED')
+                echo "<tr class='finished_task'>";
+            else
+                echo "<tr class='Late_task'>";
+
             echo "<td>" . $row['t_title'] . "</td> ";
             echo "<td>" . $row['t_start_date'] . "</td> ";
             echo "<td>" . $row['t_due_date'] . "</td> ";
@@ -79,12 +89,24 @@ function printTasksbyStatus2($status)
             echo "<td><a href='searchByName.php?id=$id&name=$name&path=$img_path'>" . "$name" . "</a></td> ";
 
 
-
-            echo "<td>" . $row['t_status'] . "</td> ";
-            echo "</tr>";
-
+            $status_ = $row['t_status'];
+            if($status_ != 'LATE') {
+                echo "<td><select name='$taskId' size=1 >\n";
+                echo $status_ == "PENDING" ? "<option selected>PENDING</option>\n" : "<option >PENDING</option>\n";
+                echo $status_ == "ACTIVE" ? "<option selected>ACTIVE</option>\n" : "<option >ACTIVE</option>\n";
+                echo $status_ == "FINISHED" ? "<option selected>FINISHED</option>\n" : "<option >FINISHED</option>\n";
+                echo "</select></td>\n";
+                echo "</tr>";
+            }
+            else //its late
+            {
+                echo "<td>LATE</td>";
+            }
         }
         echo "</table>";
+        echo "<input class='updateStatus' type=\"submit\" name=\"submit\" value=\"update Statuses\" >";
+        echo "</form>";
+
     }
 }
 function printTasksbyCondition($condition)
@@ -93,8 +115,7 @@ function printTasksbyCondition($condition)
 
     $myId = $_SESSION['mid'];
     //statement to get my tasks
-    $sql = "SELECT  mid , pic_path , name, t_title , t_start_date , t_due_date , t_priority ,\n"
-        . " t_from , t_status from task , member where $condition and t_from = mid";
+    $sql = "SELECT * from task , member where $condition and t_from = mid ORDER by t_due_date DESC ";
     if (VERBOSE)
         echo $sql;
     $result_Set = mysql_query($sql) or die("error :" . mysql_error());
@@ -115,9 +136,25 @@ function printTasksbyCondition($condition)
     echo "<th>From</th>";
     echo "<th>status</th>";
     echo "</tr>";
+
+
+
+
         //printing the tasks
         while ($row = mysql_fetch_array($result_Set)) {
-            echo "<tr>";
+
+            $status_ = $row['t_status'];
+//            $taskId = $row['t_id'];
+            if($status_ == 'PENDING')
+                echo "<tr class='pending_task'>";
+            elseif($status_ == 'ACTIVE')
+                echo "<tr class='active_task'>";
+            elseif($status_ == 'FINISHED')
+                echo "<tr class='finished_task'>";
+            else
+                echo "<tr class='Late_task'>";
+
+
             echo "<td>" . $row['t_title'] . "</td> ";
             echo "<td>" . $row['t_start_date'] . "</td> ";
             echo "<td>" . $row['t_due_date'] . "</td> ";
@@ -140,7 +177,7 @@ function printTasksbyCondition($condition)
 function setLateTasks(){
     $mid = $_SESSION['mid'];
     $sql = "UPDATE task SET t_status='LATE'
-              WHERE CURRENT_DATE() > t_due_date and t_to = $mid";
+              WHERE CURRENT_DATE() > t_due_date and t_to = $mid and task.t_status <> 'FINISHED' ";
     if(VERBOSE)
         echo $sql;
 

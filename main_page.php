@@ -20,20 +20,20 @@ setLateTasks(); // to check late take and set them late in the db
 <body>
 <?php include_once 'header_and_nav.php'; ?>
 <div class="PageTitle">Home Page</div>
-
+    <h3>Today Jobs</h3>
 <?php //TODO printTasksbyStatus("t_status = ('Active' or 'PENDING' or 'finished')");?>
 
 <?php
     $myId = $_SESSION['mid'];
 
     //statement to get my tasks
-    $sql = "SELECT name  , mid ,pic_path , t_id ,  t_title , t_start_date , t_due_date , t_priority ,\n"
-        . " t_from , t_status from task , member where t_from = mid and  t_to = $myId  and  t_status = ('Active' or 'PENDING' or 'finished')";
+    $sql = "SELECT * from task , member where t_from = mid and
+        t_to = $myId  and  t_status = ('Active' or 'PENDING' or 'finished') and Date(task.t_due_date) = CURRENT_DATE() ORDER by t_due_date DESC  ";
     if (count($_COOKIE) > 0) // check the user enable the cookies
         $sql = $sql . " limit ". $_COOKIE['limit'];
     if (VERBOSE)
         echo $sql;
-    $result_Set = mysql_query($sql);
+    $result_Set = mysql_query($sql) or die("error :" .mysql_error());
 ?>
 
 
@@ -93,7 +93,7 @@ setLateTasks(); // to check late take and set them late in the db
     }
     echo "</table>";
     ?>
-    <input type="submit" name="submit" value="update Statuses" >
+    <input class="updateStatus" type="submit" name="submit" value="update Statuses" >
 
 </form>
 <?php include_once('endOfPage.php')?>

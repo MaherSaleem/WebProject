@@ -183,9 +183,79 @@ p , li , td , th{
     height : 100px;
 }
 
+.login {
+    border-radius: 25px;
+    background-color: #afd9ee;
+    width: 40%;
+    margin: auto;
+    margin-top: 50px;
+    padding-bottom: 10%;
+
+}
+.formDiv{
+   margin-left: 10%;
+    padding-top: 10px ;
+}
+.login input[type=text] ,.login input[type=password] {
+    width: 96%;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-left: 20px;
+
+}
 
 
+.beautyButton{
 
+    background-color: #c9302c;
+    border: none;
+    color: white;
+    padding: 15px 75px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+
+}
+
+.beautyButton:hover{
+    background-color: #44af00;
+}
+.updateStatus {
+
+    background-color: #3da2bf;
+    border: none;
+    color: white;
+    padding: 16px 19px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 11px;
+    margin-left: 1%;
+    border-radius: 5px;
+}
+.updateStatus:hover{
+    background-color: #d9534f;
+}
+.otherColor{
+    background-color: orange;
+    padding-top: 13px;
+}
+
+
+#rightArrow{
+    position: absolute;
+    right: 20%;
+    font-size: 4em;
+}
+#leftArrow{
+    position: absolute;
+    left: 20%;
+    font-size: 4em;
+}
 /*#footer{*/
     /*background-color: brown;*/
     /*clear: both;*/
