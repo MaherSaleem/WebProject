@@ -15,7 +15,7 @@ include_once('connectToDB.php');
 
 <form method="get" action="searchByName.php">
     <label>Name to search for</label>
-    <input type="text" name="NameSearchFor">
+    <input class="textBox" type="text" name="NameSearchFor">
     <input type="submit" name="submit">
 </form>
 

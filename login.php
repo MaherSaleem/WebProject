@@ -38,8 +38,8 @@
         <div class="formDiv">
     <h1>Login page</h1>
     <hr>
-        <p><label for="username">Name</label></p>
-        <p><input  required type="text" name="username" placeholder="username" id="username"></p>
+        <p><label for="username">Email</label></p>
+        <p><input  required type="text" name="username" placeholder="Email" id="username"></p>
 
         <p><label for="password">Password</label></p>
         <p><input required type="password" name="password" placeholder="password" id="password"></p>

@@ -14,10 +14,10 @@ include_once('connectToDB.php');
 
 <p>please select the priority</p>
 <ul>
-    <a href="searchByStatus.php?status=pending"><li  >pendign</li></a>
-    <a href="searchByStatus.php?status=active"><li  >active</li></a>
-    <a href="searchByStatus.php?status=finished"><li  >finished</li></a>
-    <a href="searchByStatus.php?status=late"><li  >late</li></a>
+    <a href="searchByStatus.php?status=pending"><li  class="listAsButton" >Pending</li></a>
+    <a href="searchByStatus.php?status=active"><li class="listAsButton" >Active</li></a>
+    <a href="searchByStatus.php?status=finished"><li class="listAsButton" >Finished</li></a>
+    <a href="searchByStatus.php?status=late"><li class="listAsButton" >Late</li></a>
 
 </ul>
 <?php

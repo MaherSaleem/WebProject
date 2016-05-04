@@ -79,7 +79,7 @@ body{
 
 a:link{
     /*color: black;*/
-    /*text-decoration: none;*/
+    text-decoration: none;
 }
 a:visited{
     /*color: black;*/
@@ -137,7 +137,8 @@ h1 , h2 , h3 , h4 , h5 , h6{
 }
 
 p , li , td , th{
-    font-family: cursive;
+    font-family: 'Century Gothic';
+    font-size: large;
 }
 
 
@@ -158,19 +159,19 @@ p , li , td , th{
 /*tasks part*/
 
 .Pending_task{
-    background-color: #8c8c8c;
+    background-color: rgba(140, 140, 140, 0.84);
 
 }
 .Late_task{
-    background-color: #d9534f;
+    background-color: rgba(217, 95, 85, 0.64);
 }
 
 .Active_task{
-    background-color: #4cae4c;
+    background-color: lightgreen;
 }
 
 .finished_task {
-    background-color: gold;
+    background-color: rgba(237, 244, 15, 0.56);
 }
 
 .smallImage{
@@ -217,9 +218,9 @@ p , li , td , th{
     display: inline-block;
     font-size: 16px;
     border-radius: 5px;
+    margin-top: 20px;
 
 }
-
 .beautyButton:hover{
     background-color: #44af00;
 }
@@ -255,6 +256,85 @@ p , li , td , th{
     position: absolute;
     left: 20%;
     font-size: 4em;
+}
+
+
+.countTasks{
+    position: absolute;
+    right: 3%;
+    background-color: #c9302c;
+    border-radius: 25px;
+    margin-left: 16%;
+    color: white;
+    display: inline-block;
+    width: 15%;
+    text-align: center;
+}
+
+
+hr{
+    margin-right: 10%;
+}
+
+
+table {
+    margin-top: 5px;
+    width: 90%;
+    border-collapse: collapse;
+    text-align: center;
+
+}
+table th{
+    background-color: rgba(102, 175, 233, 0.85);
+    color: white;
+    height: 60px;
+}
+
+table td{
+    height: 30px;
+
+}
+
+select{
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    /* line-height: 1; */
+    /* border: 0; */
+    border-radius: 0;
+    height: 34px;
+/* -webkit-appearance: none;*/
+}
+
+.textBox {
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    /* line-height: 1; */
+    /* border: 0; */
+    border-radius: 0;
+    height: 34px;
+}
+
+.listAsButton{
+    position: relative;
+    list-style: none;
+    left: -35px;
+    padding-top: 10px;
+    width: 15%;
+    height: 40px;
+    /*padding-left: 2%;*/
+    display: inline-block;
+    background-color: rgba(46, 109, 164, 0.5);
+    border-radius: 20px;
+    font-size: 20px;
+    clear: left;
+    text-align: center;
+}
+
+.listAsButton:hover{
+    background-color: #d9534f;
 }
 /*#footer{*/
     /*background-color: brown;*/

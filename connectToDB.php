@@ -68,6 +68,7 @@ function printTasksbyStatus2($status)
 
             $status_ = $row['t_status'];
             $taskId = $row['t_id'];
+            $senderName = $row['name'];
             if($status_ == 'PENDING')
                 echo "<tr class='pending_task'>";
             elseif($status_ == 'ACTIVE')
@@ -77,16 +78,14 @@ function printTasksbyStatus2($status)
             else
                 echo "<tr class='Late_task'>";
 
-            echo "<td>" . $row['t_title'] . "</td> ";
-            echo "<td>" . $row['t_start_date'] . "</td> ";
+            echo "<td><a href='TaskFull.php?t_id=$taskId&senderName=$senderName'>" . $row['t_title'] . "</a></td>";            echo "<td>" . $row['t_start_date'] . "</td> ";
             echo "<td>" . $row['t_due_date'] . "</td> ";
             echo "<td>" . $row['t_priority'] . "</td> ";
 
 
             $id = $row['mid'];
             $img_path = $row['pic_path'];
-            $name = $row['name'];
-            echo "<td><a href='searchByName.php?id=$id&name=$name&path=$img_path'>" . "$name" . "</a></td> ";
+            echo "<td><a href='searchByName.php?id=$id&name=$senderName&path=$img_path'>" . "$senderName" . "</a></td> ";
 
 
             $status_ = $row['t_status'];

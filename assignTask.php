@@ -28,7 +28,6 @@
                 // echo "<input type='hidden' name='receiverId' value='$mid'>";
                 // echo "<input type='submit' name='submit' value='send Task'>";
                 echo  "<td>". "<a href='CreateTask.php?receiverId=$mid'>send Task</a>" . "</td>";//store the id of the receiver at $_GET['receiverId']
-                echo "<br>";
                 // echo "</form>";
                 echo "</tr>";
                 echo "\n";

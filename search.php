@@ -18,7 +18,7 @@ include_once('connectToDB.php');
         $choice = $_POST['searchBy'];
 ?>
     <form action="search.php?" method="post" >
-        <label>search by</label></br>
+        <label>search by</label>
         <select name="searchBy">
             <option  value="1">Name</option>
             <option  value="2">Priority</option>
@@ -47,8 +47,7 @@ include_once('connectToDB.php');
                 }
             }
         ?>
-        <br>
-        <input type="submit" name="submit" id="submit">
+        <input class="beautyButton" value="Search" type="submit" name="submit" id="submit">
     </form>
 <?php include_once('endOfPage.php')?>
 </body>

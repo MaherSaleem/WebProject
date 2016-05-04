@@ -11,16 +11,29 @@
             <a href="logout.php">Logout </a>
         </div>
     </div>
+    <?php
+        $mid = $_SESSION['mid'];
+        $sql = "SELECT count(*) FROM task WHERE t_status = 'LATE' and t_to=$mid";
+        $lateNum = mysql_fetch_row(mysql_query($sql))[0];
+        $sql = "SELECT count(*) FROM task WHERE t_status = 'FINISHED' and t_to=$mid";
+        $finishedNum = mysql_fetch_row(mysql_query($sql))[0];
+        $sql = "SELECT count(*) FROM task WHERE t_status = 'PENDING' and t_to=$mid";
+        $PENDINGNum = mysql_fetch_row(mysql_query($sql))[0];
+        $sql = "SELECT count(*) FROM task WHERE t_status = 'ACTIVE' and t_to=$mid";
+        $ACTIVENum = mysql_fetch_row(mysql_query($sql))[0];
+
+    ?>
+
     <div id="nav">
         <div id="nag_content" >
             <ul>
                 <a href="main_page.php"><li class="nav_elm" >Home page</li></a>
-                <a href="assignTask.php"><li class="nav_elm" >Add new Task</li></a>
+                <a href="assignTask.php"><li class="nav_elm" >new Task</li></a>
                 <a href="search.php"><li class="nav_elm" >search page</li></a>
-                <a href="lateTasks.php"><li class="nav_elm" >late tasks</li></a>
-                <a href="pendingTasks.php"><li class="nav_elm" >pending tasks</li></a>
-                <a href="activeTasks.php"><li class="nav_elm" >active tasks</li></a>
-                <a href="finishedTasks.php"><li class="nav_elm" >finished tasks</li></a>
+                <a href="lateTasks.php"><li class="nav_elm" >late tasks <?php echo "<span class='countTasks'>$lateNum</span>";?></li></a>
+                <a href="pendingTasks.php"><li class="nav_elm" >pending tasks <?php echo "<span class='countTasks'>$PENDINGNum</span>";?></li></a>
+                <a href="activeTasks.php"><li class="nav_elm" >active tasks <?php echo "<span class='countTasks'>$ACTIVENum</span>";?></li></a>
+                <a href="finishedTasks.php"><li class="nav_elm" >finished tasks <?php echo "<span class='countTasks'>$finishedNum</span>";?></li></a>
                 <a href="setting.php"><li class="nav_elm" >Setting</li></a>
 
             </ul>

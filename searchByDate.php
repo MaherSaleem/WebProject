@@ -15,10 +15,10 @@ include_once('connectToDB.php');
 <form method="get" action="searchByDate.php">
 
     <label for="from">from date</label><br>
-    <input required type="datetime-local" name="from" value="<?php if(isset($_GET['submit']))  echo   $_GET['from'] ?>" ><br>
+    <input required class="textBox" type="datetime-local" name="from" value="<?php if(isset($_GET['submit']))  echo   $_GET['from'] ?>" ><br>
     <label for="from">to date</label><br>
-    <input required type="datetime-local" name="to" value="<?php if(isset($_GET['submit']))  echo   $_GET['to'] ?>"  ><br>
-    <input type="submit" name="submit">
+    <input required class="textBox" type="datetime-local" name="to" value="<?php if(isset($_GET['submit']))  echo   $_GET['to'] ?>"  ><br>
+    <input class="beautyButton" type="submit" name="submit">
 
 </form>
 

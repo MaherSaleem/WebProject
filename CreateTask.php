@@ -39,16 +39,16 @@ include_once("connectToDB.php");
         echo "<p> To : $recevier_name </p> ";
         ?>
         <label for="Ttitle"> Task Title</label> <br>
-        <input type="text" name="Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
+        <input class="textBox" type="text" name="Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
 
         <label for="description"> Task description</label> <br>
-        <textarea id="description" name="description" rows="5" cols="30"></textarea><br>
+        <textarea  id="description" name="description" rows="5" cols="30"></textarea><br>
         <!--TODO fix "for" in lables -->
         <label for="startDate"> Start Date</label> <br>
-        <input type="text" name="startDate" id=startDate" placeholder="Task Ttitle"><br>
+        <input class="textBox" type="text" name="startDate" id=startDate" placeholder="Task Ttitle"><br>
 
         <label for="dueDate"> Due date</label> <br>
-        <input type="datetime-local" name="dueDate" id="dueDate" placeholder="Task Ttitle"><br>
+        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" placeholder="Task Ttitle"><br>
 
         <label for="prioriyt"> Priority </label> <br>
         <select name="priority" id="prioriyt" size="1">
@@ -60,7 +60,7 @@ include_once("connectToDB.php");
         <input type='hidden' name="recevier_id" value="<?php echo $_GET['receiverId'] ?>">
 
         <br>
-        <input type="submit" name="submit" value="send Task">
+        <input class="beautyButton" type="submit" name="submit" value="send Task">
 
     </form>
 <?php include_once('endOfPage.php')?>

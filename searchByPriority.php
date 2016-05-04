@@ -14,9 +14,9 @@ include_once('connectToDB.php');
 
 <p>please select the priority</p>
 <ul>
-    <a href="searchByPriority.php?priority=1"><li  >1</li></a>
-    <a href="searchByPriority.php?priority=2"><li  >2</li></a>
-    <a href="searchByPriority.php?priority=3"><li  >3</li></a>
+    <a href="searchByPriority.php?priority=1"><li class="listAsButton" >1</li></a>
+    <a href="searchByPriority.php?priority=2"><li class="listAsButton" >2</li></a>
+    <a href="searchByPriority.php?priority=3"><li class="listAsButton" >3</li></a>
 
 </ul>
 
