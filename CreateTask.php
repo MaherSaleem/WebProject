@@ -25,7 +25,13 @@ include_once("connectToDB.php");
         if(VERBOSE)
             echo $sql;
         mysql_query($sql) or die ("can't insert this task");
+
+        //query to get messege email
+        $sql = "select * from member where mid=$receiver_idd";
+         $receiverEmail = mysql_fetch_array(mysql_query($sql))['username'];
+//        sendMail($_SESSION['name'] ,$receiverEmail ); TODO enable email
         header("location: assignTask.php");
+
     }
     ?>
     <h1>New Task</h1>

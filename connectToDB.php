@@ -1,17 +1,16 @@
 <?php
-// $db = mysql_connect("web1130258.studentswebprojects.ritaj.ps", "Maher", "maher123")
-// or die("can't connect to Data base " . mysql_errno());
-// mysql_select_db("project_1130258", $db)
-// or die("Could not find database: " . mysql_error());
 
+
+require_once "Mail.php";
 
 define("VERBOSE", false );
-$db = mysql_connect("localhost", "root", "")
-or die("can't connect to Data base " . mysql_errno());
+
+// $db = mysql_connect("localhost", "Maher", "maher123") or die("can't connect to Data base mysql_errno());
+// mysql_select_db("project_1130258", $db) or die("can't connect to Data base " . mysql_errno());
 
 
-mysql_select_db("webproject", $db)
-or die("Could not find database: " . mysql_error());
+$db = mysql_connect("localhost", "root", "")or die("can't connect to Data base " . mysql_errno());
+mysql_select_db("webproject", $db) or die("Could not find database: " . mysql_error());
 
 function printTasksbyStatus($status)
 {
@@ -197,5 +196,38 @@ function printAnyTable($sql){
 
     }
     echo "</table>";
+}
+
+function sendMail($fromName , $email){
+
+    $from = "maher1130258@live.com";
+    $to = $email;
+    $subject = "new task from $fromName";
+    $body = "helooooooooooo ";
+
+    $host = "smtp.gmail.com";
+    $username = "maher1130258@gmail.com";// your email
+    $password = "MAHER123";//your password
+
+//https://accounts.google.com/DisplayUnlockCaptcha
+//https://www.google.com/settings/security/lesssecureapps
+
+
+    $headers = array ('From' => $from,
+        'To' => $to,
+        'Subject' => $subject);
+    $smtp = Mail::factory('smtp',
+        array ('host' => $host,
+            'auth' => true,
+            'username' => $username,
+            'password' => $password));
+
+    $mail = $smtp->send($to, $headers, $body);
+
+    if (PEAR::isError($mail)) {
+        echo("" . $mail->getMessage() . "");
+    } else {
+        echo("Message successfully sent!");
+    }
 }
 ?>

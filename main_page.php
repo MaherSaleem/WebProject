@@ -40,7 +40,11 @@ setLateTasks(); // to check late take and set them late in the db
 <!--to update statuses-->
 
 <?php
-    //    TODO fix the format of printing
+
+    //TODO 1 : send emails when task is created
+	//TODO 2 : fix edting and limiting showed tasks in search and everywhare
+	//TODO 3 : remove start date from create task
+	//TODO 4 : try to make printTasksTable generic function  (take mode as pararmeter)
 
     if (mysql_num_rows($result_Set) == 0) {
         echo "<h3>no jobs for today !<h3>";
