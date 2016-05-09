@@ -36,6 +36,8 @@
             ?>
     </table>
     <?php include_once('endOfPage.php')?>
-
+    <script>
+        document.getElementsByClassName("nav_elm")[1].style.backgroundColor = "#71b874" ;
+    </script>
 </body>
 </html>

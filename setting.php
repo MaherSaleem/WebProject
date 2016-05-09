@@ -2,9 +2,9 @@
 
 include_once('check_session.php');
 include_once('connectToDB.php');
-
-if(!isset($_COOKIE['limit']) ) {
-    setcookie("limit", 10);//initial value
+$mid = $_SESSION['mid'];
+if(!isset($_COOKIE["limit$mid"]) ) {
+    setcookie("limit$mid", 10);//initial value
     //the cookies need the page to be refreshed to be able to use it
     header("location: setting.php");
 }
@@ -12,7 +12,7 @@ if(!isset($_COOKIE['limit']) ) {
 
 // set the limit value
 if(isset($_POST["btnSetlimit"]) ) {
-    setcookie("limit", $_POST['limitValue']);
+    setcookie("limit$mid", $_POST['limitValue']);
     echo "enter  isset<br>";
     header("location: setting.php");
 }
@@ -61,7 +61,7 @@ if(isset($_POST['submit'])){
     <fieldset>
         <legend>Set task limit</legend>
     <label for="limitValue">limit for daily tasks</label>
-    <input type="text"  name="limitValue" id="limitValue" value="<?php echo $_COOKIE['limit'];?>">
+    <input type="text"  name="limitValue" id="limitValue" value="<?php echo $_COOKIE["limit$mid"];?>">
     <input type="submit" name="btnSetlimit">
     </fieldset>
 </form>
@@ -99,5 +99,8 @@ if(isset($_POST['submit'])){
 
 
 <?php include_once('endOfPage.php')?>
+<script>
+    document.getElementsByClassName("nav_elm")[7].style.backgroundColor = "#71b874" ;
+</script>
 </body>
 </html>

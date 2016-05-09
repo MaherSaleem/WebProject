@@ -28,11 +28,17 @@ include_once('connectToDB.php');
 //get tasks that theier due_date is in this range
     if(isset($_GET['submit'])){
         $mid = $_SESSION['mid'];
-        $condition =" t_to = $mid  and t_due_date > '".$_GET['from'] . "' and t_due_date < '".$_GET['to'] ."' ";
-        printTasksbyCondition($condition);
+        $sql = "SELECT * from task , member where "." t_to = $mid  and t_due_date > '".$_GET['from'] . "' and t_due_date < ' ".$_GET['to'] ."' "." and t_from = mid  ";
+        printTasksbySql($sql);
+//        $condition =" t_to = $mid  and t_due_date > '".$_GET['from'] . "' and t_due_date < '".$_GET['to'] ."' ";
+//        printTasksbyCondition($condition);
+
     }
 ?>
 
 <?php include_once('endOfPage.php')?>
+<script>
+    document.getElementsByClassName("nav_elm")[2].style.backgroundColor = "#71b874" ;
+</script>
 </body>
 </html>

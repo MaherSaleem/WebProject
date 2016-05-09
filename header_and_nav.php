@@ -1,14 +1,16 @@
 <head>
     <link href="commonCSS3.css" rel="stylesheet" type="text/css">
-
+</head>
 <body>
-
 
     <div id="head">
         <div style="float: left" ><img id="myImage" src="<?php echo  $_SESSION['pic_path'];?>" alt="Maher photo"></div>
         <div id="TextInHeader">
             <span id="MyName""><?php echo  $_SESSION['name'];?><br></span>
-            <a href="logout.php">Logout </a>
+            <a class="head_items" href="aboutUs.php">about us</a>
+            <a class="head_items" href="mailto:maher1130258@gmail.com">contact us </a>
+            <a class="head_items" href="logout.php">Logout </a>
+
         </div>
     </div>
     <?php

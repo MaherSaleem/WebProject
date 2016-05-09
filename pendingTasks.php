@@ -4,10 +4,6 @@ include_once('check_session.php');
 include_once('connectToDB.php');
 ?>
 <html>
-<head>
-
-</head>
-<body>
 <?php include_once 'header_and_nav.php'; ?>
 <div class="PageTitle">Pending Tasks</div>
 
@@ -16,4 +12,8 @@ include_once('connectToDB.php');
 <br>
 <?php include_once('endOfPage.php')?>
 </body>
+
+<script>
+    document.getElementsByClassName("nav_elm")[4].style.backgroundColor = "#71b874" ;
+</script>
 </html>

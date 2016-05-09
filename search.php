@@ -50,5 +50,10 @@ include_once('connectToDB.php');
         <input class="beautyButton" value="Search" type="submit" name="submit" id="submit">
     </form>
 <?php include_once('endOfPage.php')?>
+
+<script>
+    document.getElementsByClassName("nav_elm")[2].style.backgroundColor = "#71b874" ;
+</script>
 </body>
+
 </html>

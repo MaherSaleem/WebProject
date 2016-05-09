@@ -4,10 +4,9 @@ include_once("connectToDB.php");
 ?>
 
 <html>
-<head>
-</head>
-<body>
+
 <?php include_once('header_and_nav.php')?>
+<body>
 
     <?php
     if(isset($_POST['submit'])){
@@ -36,6 +35,8 @@ include_once("connectToDB.php");
     ?>
     <h1>New Task</h1>
     <form method="post" action="CreateTask.php">
+        <fieldset>
+            <legend>New Task</legend>
         <p>Sender: <?php echo $_SESSION['name'] ?> </p>
         <?php
         // $receiver_Id = $_POST['receiverId'];
@@ -49,15 +50,12 @@ include_once("connectToDB.php");
 
         <label for="description"> Task description</label> <br>
         <textarea  id="description" name="description" rows="5" cols="30"></textarea><br>
-        <!--TODO fix "for" in lables -->
-        <label for="startDate"> Start Date</label> <br>
-        <input class="textBox" type="text" name="startDate" id=startDate" placeholder="Task Ttitle"><br>
 
         <label for="dueDate"> Due date</label> <br>
-        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" placeholder="Task Ttitle"><br>
+        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" ><br>
 
-        <label for="prioriyt"> Priority </label> <br>
-        <select name="priority" id="prioriyt" size="1">
+        <label for="prioriy"> Priority </label> <br>
+        <select name="priority" id="prioriy" size="1">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -67,8 +65,12 @@ include_once("connectToDB.php");
 
         <br>
         <input class="beautyButton" type="submit" name="submit" value="send Task">
+            </fieldset>
 
     </form>
 <?php include_once('endOfPage.php')?>
+    <script>
+        document.getElementsByClassName("nav_elm")[1].style.backgroundColor = "#71b874" ;
+    </script>
 </body>
 </html>

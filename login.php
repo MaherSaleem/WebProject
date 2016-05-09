@@ -1,4 +1,5 @@
 <?php
+	$foundFlag = true;
     session_start();
     include_once("connectToDB.php");
 
@@ -10,7 +11,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-
+        $foundFlag - true;
         $queryCheckIfExist =
             "SELECT * FROM `member` WHERE username='$username' and password='$password'";
         if(VERBOSE)
@@ -26,6 +27,8 @@
 
             header("location: main_page.php");//redirection to main page
         }
+        else
+        	$foundFlag = false;
     }
 ?>
 <html>
@@ -48,6 +51,7 @@
         <p><input class="beautyButton" type="submit" value="log in" name="submit">
         <a class="beautyButton otherColor" href="signUp.php">register</a>
         </p>
+        <?php if($foundFlag == false) echo "<div style='color: red;font-size: 20px;'>wrong userName or password</div>";?>
         </div>
     </form>
 

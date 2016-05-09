@@ -22,18 +22,17 @@ include_once('connectToDB.php');
 </ul>
 <?php
     if(isset($_GET['status'])){
-     $stat = $_GET['status'];
-        if($stat == "pending")
-            printTasksbyStatus("t_status = 'pending'");
-        else if($stat == "active")
-            printTasksbyStatus("t_status = 'active'");
-        else if($stat == "finished")
-            printTasksbyStatus("t_status = 'finished'");
-        else  if($stat == "late")
-            printTasksbyStatus("t_status = 'late'");
+
+        $stat = $_GET['status'];
+        $myId = $_SESSION['mid'];
+        $sql = "SELECT * from task , member where t_to = $myId and  t_from = mid and t_status = '$stat' ";
+        printTasksbySql($sql);
     }
 ?>
 
 <?php include_once('endOfPage.php')?>
+<script>
+    document.getElementsByClassName("nav_elm")[2].style.backgroundColor = "#71b874" ;
+</script>
 </body>
 </html>

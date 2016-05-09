@@ -14,8 +14,11 @@ mysql_select_db("webproject", $db) or die("Could not find database: " . mysql_er
 
 function printTasksbyStatus($status)
 {
+//    echo basename($_SERVER['REQUEST_URI']);
+
     $pageName = $_SERVER['PHP_SELF'];
-    $limit = $_COOKIE['limit'];
+    $mid = $_SESSION['mid'];
+    $limit = $_COOKIE["limit$mid"];
     if(!isset($_GET['startIndex'])){//first access to the page
         $startIndex=0;
     }
@@ -27,11 +30,16 @@ function printTasksbyStatus($status)
     $prevIndex = $startIndex - $limit;
     $prevLink = $pageName . "?startIndex=$prevIndex&prev=1";
 
+    $myId = $_SESSION['mid'];
     printTasksbyStatus2("$status limit $startIndex , $limit");
+    $sql = "SELECT * from task , member where t_to = $myId and  t_from = mid and $status ";
+    $numRows = mysql_num_rows(mysql_query($sql));
     echo "<br>";
     if($startIndex > 0)
-        echo "<a  id=\"leftArrow\" href='$prevLink'>&#8678;</a>";
-    echo "<a id='rightArrow' href='$nextLink'>&#8680;</a>"    ;
+        echo "<a  id=\"leftArrow\" href='$prevLink'>Prev</a>";
+
+    if($numRows > $startIndex + $limit)
+         echo "<a id='rightArrow' href='$nextLink'>Next</a>"    ;
 }
 function printTasksbyStatus2($status)
 {
@@ -172,6 +180,102 @@ function printTasksbyCondition($condition)
         echo "</table>";
     }
 }
+
+function printTasksbySql ($sql)
+{
+//    echo basename($_SERVER['REQUEST_URI']);
+
+    $pageName = basename($_SERVER['REQUEST_URI']);
+    $pos = strpos($pageName , "&startIndex");
+    if($pos != NULL)
+        $pageName = substr($pageName , 0 , $pos);
+
+    $mid = $_SESSION['mid'];
+    $limit = $_COOKIE["limit$mid"];
+    if(!isset($_GET['startIndex'])){//first access to the page
+        $startIndex=0;
+    }
+    else{
+        $startIndex = $_GET['startIndex'];
+    }
+    $nextIndex = $startIndex + $limit;
+    $nextLink = $pageName . "&startIndex=$nextIndex&next=1";
+    $prevIndex = $startIndex - $limit;
+    $prevLink = $pageName . "&startIndex=$prevIndex&prev=1";
+
+    $myId = $_SESSION['mid'];
+    printTasksbySql2("$sql limit $startIndex , $limit");
+    $numRows = mysql_num_rows(mysql_query($sql));
+    echo "<br>";
+    if($startIndex > 0)
+        echo "<a  id=\"leftArrow\" href='$prevLink'>Prev</a>";
+
+    if($numRows > $startIndex + $limit)
+        echo "<a id='rightArrow' href='$nextLink'>Next</a>"    ;
+}
+function printTasksbySql2($sql)
+{
+
+    $myId = $_SESSION['mid'];
+    //statement to get my tasks
+    if (VERBOSE)
+        echo $sql;
+    $result_Set = mysql_query($sql) or die("error :" . mysql_error());
+
+
+    if (mysql_num_rows($result_Set) == 0) {
+        echo "no task found !";
+
+    }
+    else {
+        //printing tables of tasks
+        echo "<table  border='1'>";
+        echo "<tr>";
+        echo "<th>Task Title</th>";
+        echo "<th>Start Date</th>";
+        echo "<th>Due Date</th>";
+        echo "<th>Priority</th>";
+        echo "<th>From</th>";
+        echo "<th>status</th>";
+        echo "</tr>";
+
+
+
+
+        //printing the tasks
+        while ($row = mysql_fetch_array($result_Set)) {
+
+            $status_ = $row['t_status'];
+//            $taskId = $row['t_id'];
+            if($status_ == 'PENDING')
+                echo "<tr class='pending_task'>";
+            elseif($status_ == 'ACTIVE')
+                echo "<tr class='active_task'>";
+            elseif($status_ == 'FINISHED')
+                echo "<tr class='finished_task'>";
+            else
+                echo "<tr class='Late_task'>";
+
+
+            echo "<td>" . $row['t_title'] . "</td> ";
+            echo "<td>" . $row['t_start_date'] . "</td> ";
+            echo "<td>" . $row['t_due_date'] . "</td> ";
+            echo "<td>" . $row['t_priority'] . "</td> ";
+
+
+            $id = $row['mid'];
+            $img_path = $row['pic_path'];
+            $name = $row['name'];
+            echo "<td><a href='searchByName.php?id=$id&name=$name&path=$img_path'>" . "$name" . "</a></td> ";
+
+
+            echo "<td>" . $row['t_status'] . "</td> ";
+            echo "</tr>";
+
+        }
+        echo "</table>";
+    }
+}
 function setLateTasks(){
     $mid = $_SESSION['mid'];
     $sql = "UPDATE task SET t_status='LATE'
@@ -182,6 +286,7 @@ function setLateTasks(){
     mysql_query($sql) or die ('cant set late statuses');
 
 }
+
 
 function printAnyTable($sql){
     $result_Set = mysql_query($sql) or die ("cant print the talbe");

@@ -26,10 +26,15 @@ include_once('connectToDB.php');
 
         $myId = $_SESSION['mid'];
         $condition = "t_to = $myId and t_from = mid and t_priority = " . $_GET['priority'] . " and t_from = mid";
-        printTasksbyCondition($condition);
+        $sql = "SELECT * from task , member where $condition and t_from = mid ";
+        printTasksbySql($sql);
+//        printTasksbyCondition($condition);
     }
 ?>
 
 <?php include_once('endOfPage.php')?>
+<script>
+    document.getElementsByClassName("nav_elm")[2].style.backgroundColor = "#71b874" ;
+</script>
 </body>
 </html>

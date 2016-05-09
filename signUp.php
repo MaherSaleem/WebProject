@@ -36,7 +36,7 @@
 
         <p>
             <label for="pic" >image:</label>
-            <input required type="file"  name="pic" id="pic" >
+            <input  type="file"  name="pic" id="pic" required >
         </p>
 
         <p>

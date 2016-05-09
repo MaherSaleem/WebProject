@@ -3,10 +3,11 @@
 include_once('check_session.php');
 include_once('connectToDB.php');
 
+    $mid = $_SESSION['mid'];
 
 // give inital value for the cookies
-if(!isset($_COOKIE['limit']) ) {
-    setcookie("limit", 10);//initial value
+if(!isset($_COOKIE["limit$mid"]) ) {
+    setcookie("limit$mid", 10);//initial value
     header("location: main_page.php");//refresh to make the cookies take effect
 
 }
@@ -14,10 +15,6 @@ if(!isset($_COOKIE['limit']) ) {
 setLateTasks(); // to check late take and set them late in the db
 ?>
 <html>
-<head>
-
-</head>
-<body>
 <?php include_once 'header_and_nav.php'; ?>
 <div class="PageTitle">Home Page</div>
     <h3>Today Jobs</h3>
@@ -30,7 +27,7 @@ setLateTasks(); // to check late take and set them late in the db
     $sql = "SELECT * from task , member where t_from = mid and
         t_to = $myId  and  t_status = ('Active' or 'PENDING' or 'finished') and Date(task.t_due_date) = CURRENT_DATE() ORDER by t_due_date DESC  ";
     if (count($_COOKIE) > 0) // check the user enable the cookies
-        $sql = $sql . " limit ". $_COOKIE['limit'];
+        $sql = $sql . " limit ". $_COOKIE["limit$myId"];
     if (VERBOSE)
         echo $sql;
     $result_Set = mysql_query($sql) or die("error :" .mysql_error());
@@ -40,11 +37,9 @@ setLateTasks(); // to check late take and set them late in the db
 <!--to update statuses-->
 
 <?php
-
-    //TODO 1 : send emails when task is created
-	//TODO 2 : fix edting and limiting showed tasks in search and everywhare
-	//TODO 3 : remove start date from create task
-	//TODO 4 : try to make printTasksTable generic function  (take mode as pararmeter)
+    //TODO : add contact us and about us
+	//TODO  : fix edting and limiting showed tasks in search and everywhare
+	//TODO  : try to make printTasksTable generic function  (take mode as pararmeter)
 
     if (mysql_num_rows($result_Set) == 0) {
         echo "<h3>no jobs for today !<h3>";
@@ -107,6 +102,8 @@ setLateTasks(); // to check late take and set them late in the db
     ?>
 
 <?php include_once('endOfPage.php')?>
-
+<script>
+    document.getElementsByClassName("nav_elm")[0].style.backgroundColor = "#71b874" ;
+</script>
 </body>
 </html>
