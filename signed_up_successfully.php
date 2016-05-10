@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $insertSqlSt = "INSERT INTO `webproject`.`member` (`mid`, `name`, `username`,
+    $insertSqlSt = "INSERT INTO `member` (`mid`, `name`, `username`,
                     `password`, `pic_path`, `date`) VALUES" .
         "(NULL, '$name', '$username', '$password', NULL, CURRENT_DATE())";
 
@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
 
     mysql_query($insertSqlSt ) or die("not added successfully" . mysql_error());
     $currentId =  mysql_insert_id();
-    $updatePathSt = "UPDATE `webproject`.`member` SET `pic_path` = 'img/$currentId.jpg' WHERE `member`.`mid` = $currentId";
+    $updatePathSt = "UPDATE `member` SET `pic_path` = 'img/$currentId.jpg' WHERE `member`.`mid` = $currentId";
     mysql_query($updatePathSt) or die("error with updating path ". mysql_error());
     if(VERBOSE)
         echo $updatePathSt  . "<br>";

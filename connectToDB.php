@@ -262,7 +262,6 @@ function printTasksbySql2($sql)
             echo "<td>" . $row['t_due_date'] . "</td> ";
             echo "<td>" . $row['t_priority'] . "</td> ";
 
-
             $id = $row['mid'];
             $img_path = $row['pic_path'];
             $name = $row['name'];
@@ -279,7 +278,7 @@ function printTasksbySql2($sql)
 function setLateTasks(){
     $mid = $_SESSION['mid'];
     $sql = "UPDATE task SET t_status='LATE'
-              WHERE CURRENT_DATE() > t_due_date and t_to = $mid and task.t_status <> 'FINISHED' ";
+              WHERE CURRENT_DATE() > t_due_date  and task.t_status <> 'FINISHED' ";
     if(VERBOSE)
         echo $sql;
 

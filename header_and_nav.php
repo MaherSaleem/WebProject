@@ -16,13 +16,21 @@
     <?php
         $mid = $_SESSION['mid'];
         $sql = "SELECT count(*) FROM task WHERE t_status = 'LATE' and t_to=$mid";
-        $lateNum = mysql_fetch_row(mysql_query($sql))[0];
+        $result= mysql_query($sql) ;
+        $row =mysql_fetch_row($result );
+        $lateNum =$row[0];
         $sql = "SELECT count(*) FROM task WHERE t_status = 'FINISHED' and t_to=$mid";
-        $finishedNum = mysql_fetch_row(mysql_query($sql))[0];
+        $result= mysql_query($sql) ;
+        $row =mysql_fetch_row($result );
+        $finishedNum =$row[0];
         $sql = "SELECT count(*) FROM task WHERE t_status = 'PENDING' and t_to=$mid";
-        $PENDINGNum = mysql_fetch_row(mysql_query($sql))[0];
+        $result= mysql_query($sql) ;
+        $row =mysql_fetch_row($result );
+        $PENDINGNum =$row[0];
         $sql = "SELECT count(*) FROM task WHERE t_status = 'ACTIVE' and t_to=$mid";
-        $ACTIVENum = mysql_fetch_row(mysql_query($sql))[0];
+        $result= mysql_query($sql) ;
+        $row =mysql_fetch_row($result );
+        $ACTIVENum =$row[0];
 
     ?>
 

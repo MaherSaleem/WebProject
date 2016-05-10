@@ -17,7 +17,7 @@ include_once("connectToDB.php");
         $receiver_idd = $_POST['recevier_id'];
         $sender_id = $_SESSION['mid'];
 
-        $sql = "INSERT INTO `webproject`.`task` (`t_id`, `t_title`, `t_desc`, `t_start_date`, `t_due_date`, `t_priority`,
+        $sql = "INSERT INTO `task` (`t_id`, `t_title`, `t_desc`, `t_start_date`, `t_due_date`, `t_priority`,
      `t_to`, `t_from` , t_status) VALUES (NULL, '$t_title', '$t_des',
     CURRENT_TIME(), '$t_dueDate', '$t_priority ', '$receiver_idd', '$sender_id' , 'PENDING')";
 
@@ -27,8 +27,9 @@ include_once("connectToDB.php");
 
         //query to get messege email
         $sql = "select * from member where mid=$receiver_idd";
-         $receiverEmail = mysql_fetch_array(mysql_query($sql))['username'];
-//        sendMail($_SESSION['name'] ,$receiverEmail ); TODO enable email
+        $result= mysql_query($sql) ;
+        $row =mysql_fetch_array($result );
+        $receiverEmail =$row['username'];//        sendMail($_SESSION['name'] ,$receiverEmail ); TODO enable email
         header("location: assignTask.php");
 
     }
@@ -42,7 +43,9 @@ include_once("connectToDB.php");
         // $receiver_Id = $_POST['receiverId'];
         $receiver_Id = $_GET['receiverId'];
         $receiverNameQuery = "SELECT name from member where mid = $receiver_Id  ";
-        $recevier_name = mysql_fetch_row(mysql_query($receiverNameQuery))[0];
+        $result= mysql_query($receiverNameQuery) ;
+        $row =mysql_fetch_array($result );
+        $recevier_name =$row['name'];
         echo "<p> To : $recevier_name </p> ";
         ?>
         <label for="Ttitle"> Task Title</label> <br>
@@ -61,7 +64,7 @@ include_once("connectToDB.php");
             <option>3</option>
         </select>
 
-        <input type='hidden' name="recevier_id" value="<?php echo $_GET['receiverId'] ?>">
+        <input type='hidden' name="recevier_id" value="<?php echo $_GET['receiverId']; ?>">
 
         <br>
         <input class="beautyButton" type="submit" name="submit" value="send Task">
