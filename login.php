@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="commonCSS3.css"/>
 
 </head>
-<body >
+<body style="background-color: #333333">
     <form  class="login" method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
         <div class="formDiv">
     <h1>Login page</h1>
@@ -48,8 +48,8 @@
         <p><input required type="password" name="password" placeholder="password" id="password"></p>
 
 
-        <p><input class="beautyButton" type="submit" value="log in" name="submit">
-        <a class="beautyButton otherColor" href="signUp.php">register</a>
+        <p><input class="beautyButton2" type="submit" value="Login" name="submit">
+        <a class="beautyButton2 " href="signUp.php">Register</a>
         </p>
         <?php if($foundFlag == false) echo "<div style='color: red;font-size: 20px;'>wrong userName or password</div>";?>
         </div>

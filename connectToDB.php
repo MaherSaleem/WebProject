@@ -288,7 +288,7 @@ function setLateTasks(){
 
 
 function printAnyTable($sql){
-    $result_Set = mysql_query($sql) or die ("cant print the talbe");
+    $result_Set = mysql_query($sql) or die ("cant print the table");
 
     echo "<table border='1'>";
     while ($row = mysql_fetch_row($result_Set)) {

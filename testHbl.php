@@ -94,7 +94,7 @@
                 <td>Ameer</td>
                 <td><img class='smallImage' src='img/7.jpg'></td>
                 <td><a href='CreateTask.php?receiverId=7'>send Task</a></td>
-                </tr>
+                /tr>
             <tr>
                 <td>9</td>
                 <td>Saloool</td>

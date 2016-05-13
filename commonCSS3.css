@@ -66,14 +66,16 @@ body{
 .nav_even_elm{
 
 }
-.head_items{
+.head_items {
     border-radius: 10px;
-    background-color: #66afe9;
-    margin-left: 10%;
+    background-color: #66B082;
+    margin-left: 1%;
     display: inline-block;
     height: 28px;
     padding-left: 3px;
     padding-right: 5px;
+    margin-top: -10px;
+    padding-top: 12px;
 }
 
 .head_items:hover{
@@ -198,12 +200,11 @@ p , li , td , th{
 
 .login {
     border-radius: 25px;
-    background-color: #afd9ee;
+    background-color: #00B641;
     width: 40%;
     margin: auto;
-    margin-top: 50px;
-    padding-bottom: 10%;
-
+    margin-top: 108px;
+    padding-bottom: 2%;
 }
 .formDiv{
    margin-left: 10%;
@@ -218,6 +219,26 @@ p , li , td , th{
 
 }
 
+.beautyButton2{
+
+    background-color: #333333;
+    border: none;
+    color: white;
+    padding: 15px 75px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+
+}
+.beautyButton2:hover{
+
+    background-color: #ec971f;
+
+
+}
 
 .beautyButton{
 
@@ -356,4 +377,15 @@ select{
     height: 43px ;
     padding-top: 20px;
     font-size: x-large;
+}
+
+#emailExist {
+    color: white;
+    width: 50%;
+    margin: auto;
+    background-color: #d9534f;
+    height: 30px;
+    margin-bottom: -7%;
+    text-align: center;
+    border-radius: 9px
 }

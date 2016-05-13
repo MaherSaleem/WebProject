@@ -7,12 +7,21 @@
 
 </head>
 
-<body>
+<body style="background-color: #333333">
     <?php
         include_once('connectToDB.php');
 
 
     ?>
+<?php
+    if(isset($_GET['email'])){
+    echo "<div id=\"emailExist\">";
+
+     echo "<p>the email exists</p>";
+     echo "</div>";
+     }
+    ?>
+
 
     <form class="login" action="signed_up_successfully.php"  method="post" enctype="multipart/form-data">
         <div class="formDiv">
@@ -40,8 +49,8 @@
         </p>
 
         <p>
-            <input class="beautyButton" type="submit" value="register" name="submit">
-            <a class="beautyButton otherColor" href="login.php">login</a>
+            <input class="beautyButton2" type="submit" value="register" name="submit">
+            <a class="beautyButton2 " href="login.php">login</a>
 
         </p>
         </div>

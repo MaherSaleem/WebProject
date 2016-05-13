@@ -19,7 +19,7 @@ include_once("connectToDB.php");
 
         $sql = "INSERT INTO `task` (`t_id`, `t_title`, `t_desc`, `t_start_date`, `t_due_date`, `t_priority`,
      `t_to`, `t_from` , t_status) VALUES (NULL, '$t_title', '$t_des',
-    CURRENT_TIME(), '$t_dueDate', '$t_priority ', '$receiver_idd', '$sender_id' , 'PENDING')";
+    NOW(), '$t_dueDate', '$t_priority ', '$receiver_idd', '$sender_id' , 'PENDING')";
 
         if(VERBOSE)
             echo $sql;
@@ -29,7 +29,8 @@ include_once("connectToDB.php");
         $sql = "select * from member where mid=$receiver_idd";
         $result= mysql_query($sql) ;
         $row =mysql_fetch_array($result );
-        $receiverEmail =$row['username'];//        sendMail($_SESSION['name'] ,$receiverEmail ); TODO enable email
+        $receiverEmail =$row['username'];
+//        sendMail($_SESSION['name'] ,$receiverEmail ); //TODO enable email
         header("location: assignTask.php");
 
     }
@@ -49,13 +50,13 @@ include_once("connectToDB.php");
         echo "<p> To : $recevier_name </p> ";
         ?>
         <label for="Ttitle"> Task Title</label> <br>
-        <input class="textBox" type="text" name="Ttitle" id="Ttitle" placeholder="Task Ttitle"><br>
+        <input class="textBox" type="text" name="Ttitle" id="Ttitle" placeholder="Task Ttitle " required><br>
 
         <label for="description"> Task description</label> <br>
         <textarea  id="description" name="description" rows="5" cols="30"></textarea><br>
 
         <label for="dueDate"> Due date</label> <br>
-        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" ><br>
+        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" required><br>
 
         <label for="prioriy"> Priority </label> <br>
         <select name="priority" id="prioriy" size="1">
