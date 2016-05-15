@@ -5,13 +5,16 @@ include_once('connectToDB.php');
 
     $mid = $_SESSION['mid'];
 
+if(!isset($_COOKIE["Sort$mid"]) ) {
+setcookie("Sort$mid", "ORDER BY t_due_date");//initial value
+}
 // give inital value for the cookies
 if(!isset($_COOKIE["limit$mid"]) ) {
     setcookie("limit$mid", 10);//initial value
+
     header("location: main_page.php");//refresh to make the cookies take effect
 
 }
-
 setLateTasks(); // to check late take and set them late in the db
 ?>
 <html>

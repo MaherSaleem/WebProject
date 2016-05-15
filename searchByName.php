@@ -30,7 +30,8 @@ if(isset($_GET['id'])){
     echo "<h3>$name Tasks</h3>";
     echo "<img class='meduimImage' src='$img'>";
     echo "<br>";
-    printTasksbyCondition("t_to = $idSearchFor and t_status = ( 'ACTIVE' or 'PENDING' OR 'LATE' or 'FINISHED') and t_from = mid");
+
+    printTasksbyCondition("t_to = $idSearchFor and t_status = ( 'ACTIVE' or 'PENDING' OR 'LATE' or 'FINISHED') and t_from = mid ");
 }
 
 // search for a user

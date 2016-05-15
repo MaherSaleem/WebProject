@@ -54,9 +54,15 @@ include_once("connectToDB.php");
 
         <label for="description"> Task description</label> <br>
         <textarea  id="description" name="description" rows="5" cols="30"></textarea><br>
-
+        <?php 
+            $sql = "SELECT CURRENT_DATE()";
+            $result = mysql_query($sql) or die (mysql_error())  ;
+            $row = mysql_fetch_row($result);
+            $currentDate = $row['0'];
+            $currentDate = $currentDate . "T23:59"
+        ?>
         <label for="dueDate"> Due date</label> <br>
-        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" required><br>
+        <input class="textBox" type="datetime-local" name="dueDate" id="dueDate" value="<?php echo $currentDate;?>" required><br>
 
         <label for="prioriy"> Priority </label> <br>
         <select name="priority" id="prioriy" size="1">

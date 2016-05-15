@@ -31,7 +31,9 @@ function printTasksbyStatus($status)
     $prevLink = $pageName . "?startIndex=$prevIndex&prev=1";
 
     $myId = $_SESSION['mid'];
-    printTasksbyStatus2("$status limit $startIndex , $limit");
+    $mid = $_SESSION['mid'];
+    $OrderBy = $_COOKIE["Sort$mid"];
+    printTasksbyStatus2("$status $OrderBy limit $startIndex , $limit");
     $sql = "SELECT * from task , member where t_to = $myId and  t_from = mid and $status ";
     $numRows = mysql_num_rows(mysql_query($sql));
     echo "<br>";
@@ -48,7 +50,7 @@ function printTasksbyStatus2($status)
 
     $myId = $_SESSION['mid'];
     //statement to get my tasks
-    $sql = "SELECT * from task , member where t_to = $myId and  t_from = mid and $status ";
+    $sql = "SELECT * from task , member where t_to = $myId and  t_from = mid and $status  ";
     if (VERBOSE)
         echo $sql;
     $result_Set = mysql_query($sql) or die("error :" . mysql_error());
@@ -119,9 +121,11 @@ function printTasksbyCondition($condition)
 {
 
 
-    $myId = $_SESSION['mid'];
+    $mid = $_SESSION['mid'];
+    $OrderBy = $_COOKIE["Sort$mid"];
+
     //statement to get my tasks
-    $sql = "SELECT * from task , member where $condition and t_from = mid ORDER by t_due_date DESC ";
+    $sql = "SELECT * from task , member where $condition and t_from=mid $OrderBy ";
     if (VERBOSE)
         echo $sql;
     $result_Set = mysql_query($sql) or die("error :" . mysql_error());
@@ -170,6 +174,7 @@ function printTasksbyCondition($condition)
             $id = $row['mid'];
             $img_path = $row['pic_path'];
             $name = $row['name'];
+
             echo "<td><a href='searchByName.php?id=$id&name=$name&path=$img_path'>" . "$name" . "</a></td> ";
 
 
@@ -204,7 +209,10 @@ function printTasksbySql ($sql)
     $prevLink = $pageName . "&startIndex=$prevIndex&prev=1";
 
     $myId = $_SESSION['mid'];
-    printTasksbySql2("$sql limit $startIndex , $limit");
+
+    $mid = $_SESSION['mid'];
+    $OrderBy = $_COOKIE["Sort$mid"];
+    printTasksbySql2("$sql  $OrderBy limit $startIndex , $limit");
     $numRows = mysql_num_rows(mysql_query($sql));
     echo "<br>";
     if($startIndex > 0)

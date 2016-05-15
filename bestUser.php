@@ -32,16 +32,18 @@ include_once('connectToDB.php');
         while($row = mysql_fetch_array($result)){
         		$lateArray[$row['mid']] = $row['sumOfLates'];
         }
-        // print_r($finishedArray);
         echo "<br>";
 
         // the user lose point for each late 
         foreach ($lateArray as $id => $late) {
-        	if(isset($finishedArray[$id])){
-        		$finishedArray[$id] -= $lateArray[$id];
-        	}
+            if(isset($finishedArray[$id])){
+                $finishedArray[$id] -= $lateArray[$id];
+            }
+            else {
+                $finishedArray[$id] = -1 * $lateArray[$id];
+            }
         }
-          // print_r($lateArray);
+        // print_r($finishedArray);
 
         //get best user(have high score)
         $best = NULL;
